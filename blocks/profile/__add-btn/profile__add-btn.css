@@ -1,0 +1,15 @@
+.profile__add-btn {
+  border: 2px solid white;
+  border-radius: 2px;
+  width: 150px;
+  height: 50px;
+  background-color: inherit;
+  background-image: url(../../../images/add.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
+  cursor: pointer;
+}
