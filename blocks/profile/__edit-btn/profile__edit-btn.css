@@ -1,5 +1,5 @@
 .profile__edit-btn {
-  display: inline-block;
+  flex-shrink: 0;
   box-sizing: border-box;
   width: 24px;
   height: 24px;
@@ -15,4 +15,12 @@
 .profile__edit-btn:hover {
   opacity: .6;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .profile__edit-btn {
+    width: 18px;
+    height: 18px;
+    background-size: 7px;
+  }
 }

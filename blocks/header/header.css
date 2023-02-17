@@ -2,3 +2,9 @@
   padding-bottom: 37px;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
+
+@media (max-width: 767px) {
+  .header {
+    padding-bottom: 28px;
+  }
+}
