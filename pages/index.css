@@ -29,6 +29,14 @@
 @import url(../blocks/places/__like-btn/places__like-btn.css);
 @import url(../blocks/places/__like-btn/_active/places__like-btn_active.css);
 
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__text/popup__text.css);
+@import url(../blocks/popup/__full-name/popup__full-name.css);
+@import url(../blocks/popup/__status/popup__status.css);
+@import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
+@import url(../blocks/popup/__close-btn/popup__close-btn.css);
+
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 
