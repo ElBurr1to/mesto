@@ -8,6 +8,11 @@
   line-height: 17px;
 }
 
+.popup__status:focus {
+  outline-offset: 5px;
+  border: none;
+}
+
 @media (max-width: 767px) {
   .popup__status {
     font-size: 14px;

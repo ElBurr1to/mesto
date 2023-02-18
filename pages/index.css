@@ -30,6 +30,7 @@
 @import url(../blocks/places/__like-btn/_active/places__like-btn_active.css);
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/__full-name/popup__full-name.css);
