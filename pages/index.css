@@ -20,7 +20,6 @@
 @import url(../blocks/profile/__status/profile__status.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
 
-@import url(../blocks/places/places.css);
 @import url(../blocks/places/__list/places__list.css);
 @import url(../blocks/places/__card/places__card.css);
 @import url(../blocks/places/__photo/places__photo.css);

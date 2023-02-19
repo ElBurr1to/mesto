@@ -15,12 +15,12 @@
         <img src="./images/avatar.jpg" alt="Аватар пользователя" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__name-row">
-            <p class="profile__name">Жак-Ив Кусто</p>
-            <button class="profile__edit-btn"></button>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn" aria-label="Редактировать"></button>
           </div>
           <p class="profile__status">Исследователь океана</p>
         </div>
-        <button class="profile__add-btn"></button>
+        <button class="profile__add-btn" aria-label="Добавить место"></button>
       </section>
       <section class="places page__places">
         <ul class="places__list">
@@ -28,8 +28,8 @@
             <figure class="places__card">
               <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Карачаевск</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Карачаевск</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -37,8 +37,8 @@
             <figure class="places__card">
               <img src="./images/elbrus.jpg" alt="Эльбрус" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Гора Эльбрус</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Гора Эльбрус</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -46,8 +46,8 @@
             <figure class="places__card">
               <img src="./images/dombai.jpg" alt="Домбай" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Домбай</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Домбай</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -55,8 +55,8 @@
             <figure class="places__card">
               <img src="./images/elbrus.jpg" alt="Эльбрус" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Гора Эльбрус</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Гора Эльбрус</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -64,8 +64,8 @@
             <figure class="places__card">
               <img src="./images/dombai.jpg" alt="Домбай" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Домбай</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Домбай</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -73,8 +73,8 @@
             <figure class="places__card">
               <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="places__photo">
               <figcaption class="places__caption">
-                <p class="places__name">Карачаево-Черкесия</p>
-                <button class="places__like-btn"></button>
+                <h2 class="places__name">Карачаево-Черкесия</h2>
+                <button class="places__like-btn" aria-label="Лайк"></button>
               </figcaption>
             </figure>
           </li>
@@ -85,15 +85,15 @@
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
     <section class="popup">
-      <form action="" class="popup__form">
+      <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="popup__full-name" name="popup__full-name" class="popup__full-name" value="Жак-Ив Кусто">
-        <input type="text" id="popup__status" name="popup__status" class="popup__status" value="Исследователь океана">
-        <input type="submit" value="Сохранить" class="popup__submit-btn">
-        <button class="popup__close-btn"></button>
+        <input type="text" id="popup__full-name" name="popup__full-name" class="popup__full-name" value="Жак-Ив Кусто" aria-label="Имя">
+        <input type="text" id="popup__status" name="popup__status" class="popup__status" value="Исследователь океана" aria-label="Статус">
+        <input type="submit" value="Сохранить" class="popup__submit-btn" aria-label="Сохранить">
+        <button class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
-    <script src="./script.js"></script>
+    <script src="./script/script.js"></script>
   </body>
 </html>
 

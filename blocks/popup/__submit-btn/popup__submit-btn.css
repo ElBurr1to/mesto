@@ -13,6 +13,7 @@
 
 .popup__submit-btn:hover {
   opacity: .8;
+  cursor: pointer;
 }
 
 @media (max-width: 767px) {
