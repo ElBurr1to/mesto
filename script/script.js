@@ -6,6 +6,7 @@ let popupForm = document.querySelector(".popup__form");
 let closeButton = document.querySelector(".popup__close-btn");
 let submitButton = document.querySelector(".popup__submit-btn");
 let deleteButtons = document.querySelectorAll(".places__delete-btn");
+let likeButtons = document.querySelectorAll(".places__like-btn");
 
 function openPopup() {
   let popupName = popupForm.querySelector(".popup__full-name");
@@ -35,10 +36,18 @@ function deletePlace(evt) {
   place.remove();
 }
 
+function pushLike(evt) {
+  evt.target.classList.toggle("places__like-btn_active");
+}
+
 editButton.addEventListener("click", openPopup);
 popupForm.addEventListener("close", closePopup);
 popupForm.addEventListener("submit", editProfile);
 
 for (let button of deleteButtons) {
   button.addEventListener("click", deletePlace);
+}
+
+for (let like of likeButtons) {
+  like.addEventListener("click", pushLike);
 }
