@@ -5,6 +5,7 @@ let popup = document.querySelector(".popup");
 let popupForm = document.querySelector(".popup__form");
 let closeButton = document.querySelector(".popup__close-btn");
 let submitButton = document.querySelector(".popup__submit-btn");
+let deleteButtons = document.querySelectorAll(".places__delete-btn");
 
 function openPopup() {
   let popupName = popupForm.querySelector(".popup__full-name");
@@ -29,6 +30,15 @@ function editProfile(evt) {
   closePopup();
 }
 
+function deletePlace(evt) {
+  let place = evt.target.closest(".places__list-item");
+  place.remove();
+}
+
 editButton.addEventListener("click", openPopup);
 popupForm.addEventListener("close", closePopup);
 popupForm.addEventListener("submit", editProfile);
+
+for (let button of deleteButtons) {
+  button.addEventListener("click", deletePlace);
+}
