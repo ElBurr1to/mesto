@@ -1,0 +1,26 @@
+.add-place__src {
+  width: 100%;
+  padding: 0 0 9px 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  margin-bottom: 50px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.add-place__src::placeholder {
+  color: #c4c4c4;
+}
+
+.add-place__src:focus {
+  outline-offset: 5px;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .add-place__src {
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 45px;
+  }
+}

@@ -38,6 +38,22 @@
 @import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 
+@import url(../blocks/add-place/add-place.css);
+@import url(../blocks/add-place/_opened/add-place_opened.css);
+@import url(../blocks/add-place/__form/add-place__form.css);
+@import url(../blocks/add-place/__text/add-place__text.css);
+@import url(../blocks/add-place/__name/add-place__name.css);
+@import url(../blocks/add-place/__src/add-place__src.css);
+@import url(../blocks/add-place/__submit-btn/add-place__submit-btn.css);
+@import url(../blocks/add-place/__close-btn/popup__close-btn.css);
+
+
+
+
+
+
+
+
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 

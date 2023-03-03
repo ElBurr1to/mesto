@@ -24,66 +24,18 @@
       </section>
       <section class="places page__places">
         <ul class="places__list">
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Карачаевск</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/elbrus.jpg" alt="Эльбрус" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Гора Эльбрус</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/dombai.jpg" alt="Домбай" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Домбай</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/elbrus.jpg" alt="Эльбрус" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Гора Эльбрус</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/dombai.jpg" alt="Домбай" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Домбай</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li class="places__list-item">
-            <figure class="places__card">
-              <button class="places__delete-btn" aria-label="Удалить"></button>
-              <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="places__photo">
-              <figcaption class="places__caption">
-                <h2 class="places__name">Карачаево-Черкесия</h2>
-                <button class="places__like-btn" aria-label="Лайк"></button>
-              </figcaption>
-            </figure>
-          </li>
+          <template class="places__list-item-template">
+            <li class="places__list-item">
+              <figure class="places__card">
+                <button class="places__delete-btn" aria-label="Удалить"></button>
+                <img src="" alt="" class="places__photo">
+                <figcaption class="places__caption">
+                  <h2 class="places__name"></h2>
+                  <button class="places__like-btn" aria-label="Лайк"></button>
+                </figcaption>
+              </figure>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
@@ -93,10 +45,19 @@
     <section class="popup">
       <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="popup__full-name" name="popup__full-name" class="popup__full-name" value="Жак-Ив Кусто" aria-label="Имя">
-        <input type="text" id="popup__status" name="popup__status" class="popup__status" value="Исследователь океана" aria-label="Статус">
+        <input type="text" id="popup__full-name" name="popup__full-name" class="popup__full-name" value="Жак-Ив Кусто" placeholder="Полное имя" aria-label="Имя">
+        <input type="text" id="popup__status" name="popup__status" class="popup__status" value="Исследователь океана" placeholder="Статус" aria-label="Статус">
         <input type="submit" value="Сохранить" class="popup__submit-btn" aria-label="Сохранить">
         <button class="popup__close-btn" aria-label="Закрыть"></button>
+      </form>
+    </section>
+    <section class="add-place">
+      <form class="add-place__form">
+        <p class="add-place__text">Новое место</p>
+        <input type="text" id="add-place__name" name="add-place__name" class="add-place__name" placeholder="Название" aria-label="Название">
+        <input type="text" id="add-place__src" name="add-place__src" class="add-place__src" placeholder="Ссылка на картинку" aria-label="Ссылка">
+        <input type="submit" value="Создать" class="add-place__submit-btn" aria-label="Создать">
+        <button class="add-place__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
     <script src="./script/script.js"></script>
