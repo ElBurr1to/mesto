@@ -37,36 +37,37 @@
             </li>
           </template>
         </ul>
-        <div class="image-popup image-popup_hidden">
-          <figure class="image-popup__figure">
-            <img src="./images/elbrus.jpg" alt="Эльбрус" class="image-popup__photo">
-            <figcaption class="image-popup__caption"></figcaption>
-            <button class="image-popup__close-btn" aria-label="Удалить"></button>
+        <section class="popup popup_type_image">
+          <figure class="popup__figure">
+            <img src="./images/elbrus.jpg" alt="Эльбрус" class="popup__photo">
+            <figcaption class="popup__caption"></figcaption>
+            <button class="popup__close-btn" aria-label="Удалить"></button>
           </figure>
-        </div>
+        </section>
       </section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup_type_edit-profile">
       <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="popup__full-name" name="popup__full-name" class="popup__full-name" value="Жак-Ив Кусто" placeholder="Полное имя" aria-label="Имя">
-        <input type="text" id="popup__status" name="popup__status" class="popup__status" value="Исследователь океана" placeholder="Статус" aria-label="Статус">
-        <input type="submit" value="Сохранить" class="popup__submit-btn" aria-label="Сохранить">
+        <input type="text" id="popup__input_type_full-name" name="popup__input_type_full-name" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Полное имя" aria-label="Имя">
+        <input type="text" id="popup__input_type_status" name="popup__input_type_status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="Статус" aria-label="Статус">
+        <input type="submit" value="Сохранить" class="popup__submit-btn popup__submit-btn_type_edit-profile" aria-label="Сохранить">
         <button class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
-    <section class="add-place">
-      <form class="add-place__form">
-        <p class="add-place__text">Новое место</p>
-        <input type="text" id="add-place__name" name="add-place__name" class="add-place__name" placeholder="Название" aria-label="Название">
-        <input type="text" id="add-place__src" name="add-place__src" class="add-place__src" placeholder="Ссылка на картинку" aria-label="Ссылка">
-        <input type="submit" value="Создать" class="add-place__submit-btn" aria-label="Создать">
-        <button class="add-place__close-btn" aria-label="Закрыть"></button>
+    <section class="popup popup_type_add-place">
+      <form class="popup__form">
+        <p class="popup__text">Новое место</p>
+        <input type="text" id="popup__input_type_place-name" name="popup__input_type_place-name" class="popup__input popup__input_type_place-name" placeholder="Название" aria-label="Название">
+        <input type="text" id="popup__input_type_src" name="popup__input_type_src" class="popup__input popup__input_type_src" placeholder="Ссылка на картинку" aria-label="Ссылка">
+        <input type="submit" value="Создать" class="popup__submit-btn popup__submit-btn_type_add-place" aria-label="Создать">
+        <button class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
+    <script src="./script/cards.js"></script>
     <script src="./script/script.js"></script>
   </body>
 </html>

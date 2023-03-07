@@ -29,37 +29,20 @@
 @import url(../blocks/places/__like-btn/_active/places__like-btn_active.css);
 @import url(../blocks/places/__delete-btn/places__delete-btn.css);
 
-@import url(../blocks/image-popup/image-popup.css);
-@import url(../blocks/image-popup/_hidden/image-popup_hidden.css);
-@import url(../blocks/image-popup/__figure/image-popup__figure.css);
-@import url(../blocks/image-popup/__photo/image-popup__photo.css);
-@import url(../blocks/image-popup/__caption/image-popup__caption.css);
-@import url(../blocks/image-popup/__close-btn/image-popup__close-btn.css);
-
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+@import url(../blocks/popup/__figure/popup__figure.css);
+@import url(../blocks/popup/__photo/popup__photo.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__text/popup__text.css);
-@import url(../blocks/popup/__full-name/popup__full-name.css);
-@import url(../blocks/popup/__status/popup__status.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_full-name.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_place-name.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_src.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_status.css);
 @import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
-
-@import url(../blocks/add-place/add-place.css);
-@import url(../blocks/add-place/_opened/add-place_opened.css);
-@import url(../blocks/add-place/__form/add-place__form.css);
-@import url(../blocks/add-place/__text/add-place__text.css);
-@import url(../blocks/add-place/__name/add-place__name.css);
-@import url(../blocks/add-place/__src/add-place__src.css);
-@import url(../blocks/add-place/__submit-btn/add-place__submit-btn.css);
-@import url(../blocks/add-place/__close-btn/popup__close-btn.css);
-
-
-
-
-
-
-
 
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
