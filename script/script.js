@@ -24,9 +24,7 @@ function openPopup(popup) {
   popup.classList.toggle("popup_opened");
 }
 
-function closePopup(evt) {
-  evt.preventDefault();
-  const popup = evt.target.closest(".popup");
+function closePopup(popup) {
   popup.classList.toggle("popup_opened");
 }
 
@@ -63,7 +61,7 @@ function handleSubmitPlaceCardClick(evt) {
   const placeLink = popupAddPlaceLink.value;
 
   renderPlaceCard({name: placename, link: placeLink});
-  closePopup(evt);
+  closePopup(popupAddPlace);
 }
 
 function handlePlaceCardDeleteClick(evt) {
@@ -111,7 +109,14 @@ function handleSubmitProfileClick(evt) {
   profileFullName.textContent = popupEditProfileFullName.value;
   profileStatus.textContent = popupEditProfileStatus.value;
 
-  closePopup(evt);
+  closePopup(popupEditProfile);
+}
+
+function handleClosePopupClick(evt) {
+  evt.preventDefault();
+  const popup = evt.target.closest(".popup");
+
+  closePopup(popup);
 }
 
 for (let cardData of initialCards) {
@@ -123,5 +128,5 @@ buttonSubmitProfile.addEventListener("click", handleSubmitProfileClick)
 buttonAddPlaceCard.addEventListener("click", handleAddPlaceCardClick);
 buttomSubmitPlaceCard.addEventListener("click", handleSubmitPlaceCardClick);
 for (let buttonClosePopup of buttonClosePopupList) {
-  buttonClosePopup.addEventListener("click", closePopup);
+  buttonClosePopup.addEventListener("click", handleClosePopupClick);
 }
