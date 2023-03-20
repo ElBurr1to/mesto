@@ -8,8 +8,11 @@
 }
 
 .popup__input:focus {
-  outline-offset: 5px;
-  border: none;
+  outline-offset: 2px;
+}
+
+.popup__input::placeholder {
+  color: #c4c4c4;
 }
 
 @media (max-width: 767px) {

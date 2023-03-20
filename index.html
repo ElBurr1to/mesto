@@ -52,8 +52,10 @@
     <section class="popup popup_type_edit-profile">
       <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="popup__input_type_full-name" name="popup__input_type_full-name" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Полное имя" aria-label="Имя">
-        <input type="text" id="popup__input_type_status" name="popup__input_type_status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="Статус" aria-label="Статус">
+        <input type="text" id="full-name" name="popup__input_type_full-name" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Имя" aria-label="Имя" required minlength="2" maxlength="40">
+        <p class="popup__input-error popup__input-error_type_full-name">Ошибка</p>
+        <input type="text" id="status" name="popup__input_type_status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="О себе" aria-label="О себе" required minlength="2" maxlength="200">
+        <p class="popup__input-error popup__input-error_type_status">Ошибка</p>
         <input type="submit" value="Сохранить" class="popup__submit-btn popup__submit-btn_type_edit-profile" aria-label="Сохранить">
         <button class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
@@ -61,14 +63,17 @@
     <section class="popup popup_type_add-place">
       <form class="popup__form">
         <p class="popup__text">Новое место</p>
-        <input type="text" id="popup__input_type_place-name" name="popup__input_type_place-name" class="popup__input popup__input_type_place-name" placeholder="Название" aria-label="Название">
-        <input type="text" id="popup__input_type_src" name="popup__input_type_src" class="popup__input popup__input_type_src" placeholder="Ссылка на картинку" aria-label="Ссылка">
+        <input type="text" id="place-name" name="popup__input_type_place-name" class="popup__input popup__input_type_place-name" placeholder="Название" aria-label="Название" required minlength="2" maxlength="30">
+        <p class="popup__input-error popup__input-error_type_place-name">Ошибка</p>
+        <input type="url" id="src" name="popup__input_type_src" class="popup__input popup__input_type_src" placeholder="Ссылка на картинку" aria-label="Ссылка" required>
+        <p class="popup__input-error popup__input-error_type_src">Ошибка</p>
         <input type="submit" value="Создать" class="popup__submit-btn popup__submit-btn_type_add-place" aria-label="Создать">
         <button class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
     <script src="./script/cards.js"></script>
     <script src="./script/script.js"></script>
+    <script src="./script/validate.js"></script>
   </body>
 </html>
 

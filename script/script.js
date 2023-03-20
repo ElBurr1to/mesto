@@ -1,3 +1,5 @@
+const popupList = document.querySelectorAll(".popup");
+
 const placeCardTemplate = document.querySelector(".places__list-item-template").content;
 const placesContainer = document.querySelector(".places__list");
 const popupAddPlace = document.querySelector(".popup_type_add-place");
@@ -21,11 +23,11 @@ const popupImageCaption = document.querySelector(".popup__caption");
 const buttonClosePopupList = document.querySelectorAll(".popup__close-btn");
 
 function openPopup(popup) {
-  popup.classList.toggle("popup_opened");
+  popup.classList.add("popup_opened");
 }
 
 function closePopup(popup) {
-  popup.classList.toggle("popup_opened");
+  popup.classList.remove("popup_opened");
 }
 
 function handleAddPlaceCardClick(evt) {
@@ -119,6 +121,19 @@ function handleClosePopupClick(evt) {
   closePopup(popup);
 }
 
+function handlePopupOverlayClick(evt) {
+  evt.preventDefault();
+  const popup = evt.target.closest(".popup");
+
+  if (evt.target === popup) closePopup(popup);
+}
+
+function handleEscButton(evt) {
+  if (evt.key == "Escape") {
+    popupList.forEach(popup => closePopup(popup));
+  }
+}
+
 for (let cardData of initialCards) {
   renderPlaceCard(cardData);
 }
@@ -130,3 +145,7 @@ buttomSubmitPlaceCard.addEventListener("click", handleSubmitPlaceCardClick);
 for (let buttonClosePopup of buttonClosePopupList) {
   buttonClosePopup.addEventListener("click", handleClosePopupClick);
 }
+popupAddPlace.addEventListener("click", handlePopupOverlayClick);
+popupEditProfile.addEventListener("click", handlePopupOverlayClick);
+popupImage.addEventListener("click", handlePopupOverlayClick);
+document.addEventListener("keydown", handleEscButton);
