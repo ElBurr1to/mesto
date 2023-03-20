@@ -3,34 +3,36 @@ const popupList = document.querySelectorAll(".popup");
 const placeCardTemplate = document.querySelector(".places__list-item-template").content;
 const placesContainer = document.querySelector(".places__list");
 const popupAddPlace = document.querySelector(".popup_type_add-place");
+const popupAddPlaceForm = popupAddPlace.querySelector(".popup__form");
 const buttonAddPlaceCard = document.querySelector(".profile__add-btn");
-const buttomSubmitPlaceCard = document.querySelector(".popup__submit-btn_type_add-place");
+const buttomSubmitPlaceCard = popupAddPlace.querySelector(".popup__submit-btn_type_add-place");
 const popupAddPlaceName = popupAddPlace.querySelector(".popup__input_type_place-name");
 const popupAddPlaceLink = popupAddPlace.querySelector(".popup__input_type_src");
 
 const buttonEditProfile = document.querySelector(".profile__edit-btn");
-const buttonSubmitProfile = document.querySelector(".popup__submit-btn_type_edit-profile");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-const popupEditProfileFullName = document.querySelector(".popup__input_type_full-name");
-const popupEditProfileStatus = document.querySelector(".popup__input_type_status");
+const popupEditProfileForm = popupEditProfile.querySelector(".popup__form");
+const popupEditProfileFullName = popupEditProfile.querySelector(".popup__input_type_full-name");
+const popupEditProfileStatus = popupEditProfile.querySelector(".popup__input_type_status");
 const profileFullName = document.querySelector(".profile__name");
 const profileStatus = document.querySelector(".profile__status");
 
 const popupImage = document.querySelector(".popup_type_image");
-const popupImagePhoto = document.querySelector(".popup__photo");
-const popupImageCaption = document.querySelector(".popup__caption");
-
-const buttonClosePopupList = document.querySelectorAll(".popup__close-btn");
+const popupImagePhoto = popupImage.querySelector(".popup__photo");
+const popupImageCaption = popupImage.querySelector(".popup__caption");
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", handleEscButton);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", handleEscButton);
 }
 
 function handleAddPlaceCardClick(evt) {
+  toggleButtonState([popupAddPlaceName, popupAddPlaceLink], buttomSubmitPlaceCard, 'popup__submit-btn_disabled');
   openPopup(popupAddPlace);
 }
 
@@ -57,12 +59,13 @@ function renderPlaceCard(cardData) {
   placesContainer.prepend(placeCard);
 }
 
-function handleSubmitPlaceCardClick(evt) {
+function handleSubmitPlaceCard(evt) {
   evt.preventDefault();
   const placename = popupAddPlaceName.value;
   const placeLink = popupAddPlaceLink.value;
 
   renderPlaceCard({name: placename, link: placeLink});
+  evt.target.reset()
   closePopup(popupAddPlace);
 }
 
@@ -105,7 +108,7 @@ function renderPopupEditProfile() {
   return popupEditProfile;
 }
 
-function handleSubmitProfileClick(evt) {
+function handleSubmitProfile(evt) {
   evt.preventDefault();
 
   profileFullName.textContent = popupEditProfileFullName.value;
@@ -114,23 +117,10 @@ function handleSubmitProfileClick(evt) {
   closePopup(popupEditProfile);
 }
 
-function handleClosePopupClick(evt) {
-  evt.preventDefault();
-  const popup = evt.target.closest(".popup");
-
-  closePopup(popup);
-}
-
-function handlePopupOverlayClick(evt) {
-  evt.preventDefault();
-  const popup = evt.target.closest(".popup");
-
-  if (evt.target === popup) closePopup(popup);
-}
-
 function handleEscButton(evt) {
   if (evt.key == "Escape") {
-    popupList.forEach(popup => closePopup(popup));
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
   }
 }
 
@@ -139,13 +129,12 @@ for (let cardData of initialCards) {
 }
 
 buttonEditProfile.addEventListener("click", handleEditProfileClick);
-buttonSubmitProfile.addEventListener("click", handleSubmitProfileClick)
+popupEditProfileForm.addEventListener("submit", handleSubmitProfile)
 buttonAddPlaceCard.addEventListener("click", handleAddPlaceCardClick);
-buttomSubmitPlaceCard.addEventListener("click", handleSubmitPlaceCardClick);
-for (let buttonClosePopup of buttonClosePopupList) {
-  buttonClosePopup.addEventListener("click", handleClosePopupClick);
-}
-popupAddPlace.addEventListener("click", handlePopupOverlayClick);
-popupEditProfile.addEventListener("click", handlePopupOverlayClick);
-popupImage.addEventListener("click", handlePopupOverlayClick);
-document.addEventListener("keydown", handleEscButton);
+popupAddPlaceForm.addEventListener("submit", handleSubmitPlaceCard);
+popupList.forEach(popup => {
+  popup.addEventListener("mousedown", evt =>  {
+    if (evt.target.classList.contains("popup_opened")) closePopup(popup);
+    if (evt.target.classList.contains("popup__close-btn")) closePopup(popup);
+  });
+});

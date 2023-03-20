@@ -24,10 +24,10 @@ function hideInputError(formElement, inputElement, inputErrorClass, errorClass) 
 function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
-    buttonElement.disabled = true;
+    buttonElement.setAttribute('disabled', true);
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
-    buttonElement.disabled = false;
+    buttonElement.removeAttribute('disabled');
   }
 }
 
