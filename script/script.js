@@ -1,6 +1,18 @@
+import { FormValidator } from "./FormValidator.js";
+import { Card } from "./Card.js"
+import { initialCards } from "./cards.js";
+
+const params = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+}
+
 const popupList = document.querySelectorAll(".popup");
 
-const placeCardTemplate = document.querySelector(".places__list-item-template").content;
 const placesContainer = document.querySelector(".places__list");
 const popupAddPlace = document.querySelector(".popup_type_add-place");
 const popupAddPlaceForm = popupAddPlace.querySelector(".popup__form");
@@ -17,10 +29,6 @@ const popupEditProfileStatus = popupEditProfile.querySelector(".popup__input_typ
 const profileFullName = document.querySelector(".profile__name");
 const profileStatus = document.querySelector(".profile__status");
 
-const popupImage = document.querySelector(".popup_type_image");
-const popupImagePhoto = popupImage.querySelector(".popup__photo");
-const popupImageCaption = popupImage.querySelector(".popup__caption");
-
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", handleEscButton);
@@ -32,31 +40,12 @@ function closePopup(popup) {
 }
 
 function handleAddPlaceCardClick(evt) {
-  toggleButtonState([popupAddPlaceName, popupAddPlaceLink], buttomSubmitPlaceCard, 'popup__submit-btn_disabled');
+  if (!popupAddPlaceName.validity.valid || popupAddPlaceLink.validity.valid) {
+    buttomSubmitPlaceCard.classList.add("popup__submit-btn_disabled");
+    buttomSubmitPlaceCard.setAttribute("disabled", true);
+  }
+
   openPopup(popupAddPlace);
-}
-
-function createPlaceCard(cardData) {
-  const placeCard = placeCardTemplate.cloneNode(true);
-  const placeCardName = placeCard.querySelector(".places__name");
-  const placeCardPhoto = placeCard.querySelector(".places__photo");
-  const buttonLikePlaceCard = placeCard.querySelector(".places__like-btn");
-  const buttonDeletePlaceCard = placeCard.querySelector(".places__delete-btn");
-
-  placeCardName.textContent = cardData.name;
-  placeCardPhoto.src = cardData.link;
-  placeCardPhoto.alt = cardData.name;
-
-  placeCardPhoto.addEventListener("click", handlePlaceCardPhotoClick);
-  buttonLikePlaceCard.addEventListener("click", handlePlaceCardLikeClick);
-  buttonDeletePlaceCard.addEventListener("click", handlePlaceCardDeleteClick);
-
-  return placeCard;
-}
-
-function renderPlaceCard(cardData) {
-  const placeCard = createPlaceCard(cardData);
-  placesContainer.prepend(placeCard);
 }
 
 function handleSubmitPlaceCard(evt) {
@@ -67,33 +56,6 @@ function handleSubmitPlaceCard(evt) {
   renderPlaceCard({name: placename, link: placeLink});
   evt.target.reset()
   closePopup(popupAddPlace);
-}
-
-function handlePlaceCardDeleteClick(evt) {
-  const placeCard = evt.target.closest(".places__list-item");
-  placeCard.remove();
-}
-
-function handlePlaceCardLikeClick(evt) {
-  evt.target.classList.toggle("places__like-btn_active");
-}
-
-function handlePlaceCardPhotoClick(evt) {
-  const imageData = {};
-  imageData.src = evt.target.src;
-  imageData.alt = evt.target.alt;
-  imageData.caption = evt.target.nextElementSibling.children[0].textContent;
-
-  renderPopupImage(imageData);
-  openPopup(popupImage);
-}
-
-function renderPopupImage(imageData) {
-  popupImagePhoto.src = imageData.src;
-  popupImagePhoto.alt = imageData.alt;
-  popupImageCaption.textContent = imageData.caption;
-
-  return popupImage;
 }
 
 function handleEditProfileClick(evt) {
@@ -124,6 +86,12 @@ function handleEscButton(evt) {
   }
 }
 
+function renderPlaceCard(cardData) {
+  const card = new Card(cardData, ".places__list-item-template");
+  const cardElement = card.generateCard();
+  placesContainer.prepend(cardElement);
+}
+
 for (let cardData of initialCards) {
   renderPlaceCard(cardData);
 }
@@ -138,3 +106,8 @@ popupList.forEach(popup => {
     if (evt.target.classList.contains("popup__close-btn")) closePopup(popup);
   });
 });
+
+const popupEditProfileValidator = new FormValidator(params, popupEditProfile);
+popupEditProfileValidator.enableValidation();
+const popupAddPlaceValidator = new FormValidator(params, popupAddPlace);
+popupAddPlaceValidator.enableValidation();
