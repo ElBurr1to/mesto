@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
   </head>
   <body class="page">
     <header class="header page__header">
-      <img src="./images/logo.png" alt="Логотип сайта Место" class="header__logo">
+      <img src="<%=require('./images/logo.png')%>" alt="Логотип сайта Место" class="header__logo">
     </header>
     <main class="main">
       <section class="profile page__profile">
-        <img src="./images/avatar.jpg" alt="Аватар пользователя" class="profile__avatar">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__name-row">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -27,7 +26,7 @@
         </ul>
         <section class="popup popup_type_image">
           <figure class="popup__figure">
-            <img src="./images/elbrus.jpg" alt="Эльбрус" class="popup__photo">
+            <img src="<%=require('./images/elbrus.jpg')%>" alt="Эльбрус" class="popup__photo">
             <figcaption class="popup__caption"></figcaption>
             <button class="popup__close-btn" aria-label="Удалить"></button>
           </figure>
@@ -40,9 +39,9 @@
     <section class="popup popup_type_edit-profile">
       <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="full-name" name="popup__input_type_full-name" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Имя" aria-label="Имя" required minlength="2" maxlength="40">
+        <input type="text" id="full-name" name="fullName" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Имя" aria-label="Имя" required minlength="2" maxlength="40">
         <p class="popup__input-error popup__input-error_type_full-name">Ошибка</p>
-        <input type="text" id="status" name="popup__input_type_status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="О себе" aria-label="О себе" required minlength="2" maxlength="200">
+        <input type="text" id="status" name="status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="О себе" aria-label="О себе" required minlength="2" maxlength="200">
         <p class="popup__input-error popup__input-error_type_status">Ошибка</p>
         <input type="submit" value="Сохранить" class="popup__submit-btn popup__submit-btn_type_edit-profile" aria-label="Сохранить">
         <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
@@ -51,9 +50,9 @@
     <section class="popup popup_type_add-place">
       <form class="popup__form">
         <p class="popup__text">Новое место</p>
-        <input type="text" id="place-name" name="popup__input_type_place-name" class="popup__input popup__input_type_place-name" placeholder="Название" aria-label="Название" required minlength="2" maxlength="30">
+        <input type="text" id="place-name" name="name" class="popup__input popup__input_type_place-name" placeholder="Название" aria-label="Название" required minlength="2" maxlength="30">
         <p class="popup__input-error popup__input-error_type_place-name">Ошибка</p>
-        <input type="url" id="src" name="popup__input_type_src" class="popup__input popup__input_type_src" placeholder="Ссылка на картинку" aria-label="Ссылка" required>
+        <input type="url" id="src" name="link" class="popup__input popup__input_type_src" placeholder="Ссылка на картинку" aria-label="Ссылка" required>
         <p class="popup__input-error popup__input-error_type_src">Ошибка</p>
         <input type="submit" value="Создать" class="popup__submit-btn popup__submit-btn_type_add-place" aria-label="Создать">
         <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
@@ -63,7 +62,7 @@
       <li class="card">
         <figure class="card__figure">
           <button class="card__delete-btn" aria-label="Удалить"></button>
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="card__photo">
+          <img src="<%=require('./images/elbrus.jpg')%>" alt="Эльбрус" class="card__photo">
           <figcaption class="card__caption">
             <h2 class="card__name"></h2>
             <button class="card__like-btn" aria-label="Лайк"></button>
@@ -71,8 +70,6 @@
         </figure>
       </li>
     </template>
-    <script src="./script/cards.js"></script>
-    <script type="module" src="./script/script.js"></script>
   </body>
 </html>
 
