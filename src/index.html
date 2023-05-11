@@ -11,13 +11,16 @@
     </header>
     <main class="main">
       <section class="profile page__profile">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
+        <div class="profile__avatar">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя" class="profile__avatar-img">
+          <div class="profile__avatar-edit"></div>
+        </div>
         <div class="profile__info">
           <div class="profile__name-row">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-btn" aria-label="Редактировать"></button>
           </div>
-          <p class="profile__status">Исследователь океана</p>
+          <p class="profile__status"></p>
         </div>
         <button class="profile__add-btn" aria-label="Добавить место"></button>
       </section>
@@ -39,10 +42,10 @@
     <section class="popup popup_type_edit-profile">
       <form class="popup__form">
         <p class="popup__text">Редактировать профиль</p>
-        <input type="text" id="full-name" name="fullName" class="popup__input popup__input_type_full-name" value="Жак-Ив Кусто" placeholder="Имя" aria-label="Имя" required minlength="2" maxlength="40">
-        <p class="popup__input-error popup__input-error_type_full-name">Ошибка</p>
-        <input type="text" id="status" name="status" class="popup__input popup__input_type_status" value="Исследователь океана" placeholder="О себе" aria-label="О себе" required minlength="2" maxlength="200">
-        <p class="popup__input-error popup__input-error_type_status">Ошибка</p>
+        <input type="text" id="name" name="name" class="popup__input popup__input_type_full-name" value="" placeholder="Имя" aria-label="Имя" required minlength="2" maxlength="40">
+        <p class="popup__input-error popup__input-error_type_name">Ошибка</p>
+        <input type="text" id="about" name="about" class="popup__input popup__input_type_status" value="" placeholder="О себе" aria-label="О себе" required minlength="2" maxlength="200">
+        <p class="popup__input-error popup__input-error_type_about">Ошибка</p>
         <input type="submit" value="Сохранить" class="popup__submit-btn popup__submit-btn_type_edit-profile" aria-label="Сохранить">
         <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
@@ -58,6 +61,23 @@
         <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
       </form>
     </section>
+    <section class="popup popup_type_avatar">
+      <form class="popup__form">
+        <p class="popup__text">Обновить аватар</p>
+        <input type="url" id="avatar" name="avatar" class="popup__input popup__input_type_avatar" placeholder="Ссылка на новый аватар" aria-label="Ссылка" required>
+        <p class="popup__input-error popup__input-error_type_avatar">Ошибка</p>
+        <input type="submit" value="Сохранить" class="popup__submit-btn popup__submit-btn_type_avatar" aria-label="Сохранить">
+        <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
+      </form>
+    </section>
+    <section class="popup popup_type_confirm">
+      <form class="popup__form">
+        <p class="popup__text">Вы уверены?</p>
+        <input type="text" id="cardId" name="cardId" value="" class="popup__input popup__input_hidden popup__input_type_cardId" placeholder="" aria-label="Id карточки">
+        <input type="submit" value="Да" class="popup__submit-btn popup__submit-btn_type_avatar" aria-label="Сохранить">
+        <button type="button" class="popup__close-btn" aria-label="Закрыть"></button>
+      </form>
+    </section>
     <template class="card-template">
       <li class="card">
         <figure class="card__figure">
@@ -65,7 +85,10 @@
           <img src="<%=require('./images/elbrus.jpg')%>" alt="Эльбрус" class="card__photo">
           <figcaption class="card__caption">
             <h2 class="card__name"></h2>
-            <button class="card__like-btn" aria-label="Лайк"></button>
+            <div class="card__like-container">
+              <button class="card__like-btn" aria-label="Лайк"></button>
+              <p class="card__like-counter">6</p>
+            </div>
           </figcaption>
         </figure>
       </li>
