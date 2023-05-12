@@ -1,6 +1,6 @@
 import { FormValidator } from "../components/FormValidator.js";
 import { Card } from "../components/Card.js"
-import { params } from "../utils/constants.js";
+import { initialCards, params } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage} from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -21,6 +21,7 @@ const buttonAddPlaceCard = document.querySelector(".profile__add-btn");
 const buttonEditProfile = document.querySelector(".profile__edit-btn");
 const buttonEditAvatar = document.querySelector(".profile__avatar");
 
+const placesList  = new Section(renderPlaceCard, ".places__list");
 const popupAddPlace = new PopupWithForm(".popup_type_add-place", handleSubmitPlaceCard);
 const popupEditProfile = new PopupWithForm(".popup_type_edit-profile", handleSubmitProfile);
 const popupEditAvatar = new PopupWithForm(".popup_type_avatar", handleSubmitAvatar);
@@ -46,49 +47,93 @@ function handleSubmitAvatar(inputValues) {
   popupEditAvatar.renderLoading(true);
   api.updateAvatar(inputValues.avatar).then(() => {
     userInfo.updateAvatar(inputValues.avatar);
-    popupEditAvatar.renderLoading(false);
     popupEditAvatar.close();
   })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEditAvatar.renderLoading(false);
+    });
 }
 
 function handleSubmitPlaceCard(cardData) {
   popupAddPlace.renderLoading(true);
   api.addPlaceCard(cardData).then(cardInfo => {
+    cardInfo.userId = userInfo.getUserId();
     renderPlaceCard(cardInfo);
-    popupAddPlace.renderLoading(false);
     popupAddPlace.close();
   })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupAddPlace.renderLoading(false);
+    });
 }
 
 function popupConfirmSubmit(cardId) {
-  api.deletePlaceCard(cardId);
-  popupConfirm.close();
+  api.deletePlaceCard(cardId)
+    .then(() => {
+      let card = popupConfirm.getCard();
+      card.deleteCard();
+      popupConfirm.close();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 }
 
 function handleDeleteCardClick(card) {
-  popupConfirm.getCard(card);
+  popupConfirm.setCard(card);
   popupConfirm.open();
 }
 
 function createCard(cardData) {
   const card = new Card(cardData, ".card-template", {
     handleCardClick: handlePlaceCardPhotoClick,
-    apiAddLike: api.addLike.bind(api),
-    apiDeleteLike: api.deleteLike.bind(api),
+    handleCardLikeClick: handleCardLikeClick,
     handleDeleteCardClick: handleDeleteCardClick,
   });
-  const cardElement = card.generateCard(api._userId);
+  const cardElement = card.generateCard();
   return cardElement;
 }
 
+
+function handleCardLikeClick(isLiked, cardId) {
+  if (isLiked) {
+    api.deleteLike(cardId)
+      .then(cardInfo => {
+        this.setLikes(cardInfo.likes);
+        this.updateLikesCount();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+  else {
+    api.addLike(cardId)
+      .then(cardInfo => {
+        this.setLikes(cardInfo.likes);
+        this.updateLikesCount();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+}
+
 function handleEditProfileClick(evt) {
-  api.getUserInfo().then(userData =>{
-    popupEditProfile.setInputValues(userData);
-    popupEditProfile.open();
-  });
+  popupEditProfileValidator.toggleButtonState();
+
+  const userData = userInfo.getUserInfo();
+  popupEditProfile.setInputValues(userData);
+  popupEditProfile.open();
 }
 
 function handleEditAvatarClick() {
+  popupEditAvatarValidator.toggleButtonState();
+
   popupEditAvatar.open();
 }
 
@@ -96,9 +141,14 @@ function handleSubmitProfile(inputValues) {
   popupEditProfile.renderLoading(true);
   api.setUserInfo(inputValues).then(userData => {
     userInfo.setUserInfo(userData);
-    popupEditProfile.renderLoading(false);
     popupEditProfile.close();
-  });
+  })
+    .catch(err => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupEditProfile.renderLoading(false);
+    });;
 }
 
 function handlePlaceCardPhotoClick(link, caption) {
@@ -125,17 +175,14 @@ popupEditAvatarValidator.enableValidation();
 
 
 
-
-//загрузка профиля
-api.getUserInfo().then(userData => {
-  userInfo.setUserInfo(userData);
-  userInfo.updateAvatar(userData.avatar);
-});
-
-//загрузка карточек
-let placesList;
-api.getInitialCards().then(initialCards => {
-  placesList = new Section({items: initialCards, renderer: renderPlaceCard}, ".places__list");
-  placesList.renderItems();
-});
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setUserInfo(userData);
+    userInfo.updateAvatar(userData.avatar);
+    initialCards.map(x => x.userId  = userData._id)
+    placesList.renderItems(initialCards);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 

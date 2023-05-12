@@ -4,25 +4,20 @@ export class Api {
     this.headers = headers;
   }
 
+  _getResponseData(res, errorMessage) {
+    if (!res.ok) {
+      return Promise.reject(errorMessage + res.status);
+    }
+    return res.json();
+  }
+
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при получениии информации о пользователе: ${res.status}`);
-      })
-      .then(user => {
-        this._userId = user._id;
-        return {
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar
-        }
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при получениии информации о пользователе: ");
       });
   }
 
@@ -32,11 +27,7 @@ export class Api {
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при получениии начальных карточек: ${res.status}`);
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при получениии начальных карточек: ");
       });
   }
 
@@ -50,11 +41,7 @@ export class Api {
       })
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при получениии информации о пользователе: ${res.status}`);
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при получениии информации о пользователе: ");
       });
   }
 
@@ -68,11 +55,7 @@ export class Api {
       })
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при добавлении карточки: ${res.status}`);
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при добавлении карточки: ");
       });
   }
 
@@ -82,15 +65,7 @@ export class Api {
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при добавлении лайка: ${res.status}`);
-      })
-      .then(cardInfo => {
-        cardInfo.userId = this._userId;
-        return cardInfo;
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при добавлении лайка: ");
       });
   }
 
@@ -100,16 +75,9 @@ export class Api {
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при удалении лайка: ${res.status}`);
-      })
-      .then(cardInfo => {
-        cardInfo.userId = this._userId;
-        return cardInfo;
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при удалении лайка: ");
       });
+
   }
 
   deletePlaceCard(cardId) {
@@ -118,11 +86,7 @@ export class Api {
       headers: this.headers
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при удалении карточки: ${res.status}`);
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при удалении карточки: ");
       });
   }
 
@@ -135,11 +99,7 @@ export class Api {
       })
     })
       .then(res => {
-        if (res.ok) return res.json();
-        else return Promise.reject(`Ошибка при обновлении аватара: ${res.status}`);
-      })
-      .catch(err => {
-        console.log(err);
+        return this._getResponseData(res, "Ошибка при обновлении аватара: ");
       });
   }
 }
