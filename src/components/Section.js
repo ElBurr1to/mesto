@@ -13,8 +13,7 @@ export class Section {
   }
 
   renderItems(items) {
-    this._items = items.reverse();
     this.clear();
-    this._items.forEach(item => this._renderer(item));
+    items.reverse().forEach(item => this._renderer(item));
   }
 }

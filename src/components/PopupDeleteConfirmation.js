@@ -18,7 +18,7 @@ export class PopupDeleteConfirmation extends Popup {
     super.setEventListeners();
     this._popup.addEventListener("submit", evt => {
       evt.preventDefault();
-      this._handleFormSubmit(this._card._id);
+      this._handleFormSubmit(this._card.getId());
     });
   }
 

@@ -60,7 +60,6 @@ function handleSubmitAvatar(inputValues) {
 function handleSubmitPlaceCard(cardData) {
   popupAddPlace.renderLoading(true);
   api.addPlaceCard(cardData).then(cardInfo => {
-    cardInfo.userId = userInfo.getUserId();
     renderPlaceCard(cardInfo);
     popupAddPlace.close();
   })
@@ -75,7 +74,7 @@ function handleSubmitPlaceCard(cardData) {
 function popupConfirmSubmit(cardId) {
   api.deletePlaceCard(cardId)
     .then(() => {
-      let card = popupConfirm.getCard();
+      const card = popupConfirm.getCard();
       card.deleteCard();
       popupConfirm.close();
     })
@@ -90,7 +89,8 @@ function handleDeleteCardClick(card) {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, ".card-template", {
+  const userId = userInfo.getUserId();
+  const card = new Card(cardData, userId, ".card-template", {
     handleCardClick: handlePlaceCardPhotoClick,
     handleCardLikeClick: handleCardLikeClick,
     handleDeleteCardClick: handleDeleteCardClick,
@@ -179,7 +179,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
     userInfo.updateAvatar(userData.avatar);
-    initialCards.map(x => x.userId  = userData._id)
     placesList.renderItems(initialCards);
   })
   .catch(err => {
